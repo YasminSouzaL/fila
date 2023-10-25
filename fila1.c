@@ -62,16 +62,27 @@ int ultimo(Fila *ptrF) {
     }
 }
 
-void imprime(Fila *ptrF) {
-    if (vazia(ptrF)) {
-        printf("Fila vazia!\n");
-        return;
-    }
-    int pos = ptrF->inicio;
-    do {
+void imprimeElemSemRemocao(Fila *ptrF) {
+    int inicio = ptrF->inicio;
+    int fim = ptrF->fim;
+    
+    int pos = inicio;
+
+    while (1) {
         printf("%d ", ptrF->elem[pos]);
+        if (pos == fim)
+            break;
         pos = (pos + 1) % MAX;
-    } while (pos != (ptrF->fim + 1) % MAX);
+    }
+    printf("\n");
+}
+
+void imprimeElemComRemocao(Fila *ptrF) {
+    while (!vazia(ptrF)) {
+        int resp = primeiro(ptrF);
+        printf("%d ", resp);
+        desenfileira(ptrF);
+    }
     printf("\n");
 }
 
@@ -83,14 +94,14 @@ int main() {
     enfileira(&f, 30);
     enfileira(&f, 40);
     enfileira(&f, 50);
-    imprime(&f);
+    imprimeElemSemRemocao(&f);
     desenfileira(&f);
     desenfileira(&f);
     desenfileira(&f);
-    imprime(&f);
+    imprimeElemSemRemocao(&f);
     enfileira(&f, 60);
     enfileira(&f, 70);
     enfileira(&f, 80);
-    imprime(&f);
+    imprimeElemSemRemocao(&f);
     return 0;
 }

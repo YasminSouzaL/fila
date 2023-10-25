@@ -86,13 +86,29 @@ int ultimo(Fila *ptrF){
 }
 
 
-void imprime(Fila *ptrF){
+void ImprimeComRemocao(Fila *ptrF){
+    int i;
     No *aux;
     if(vazia(ptrF))
         printf("Fila vazia!\n");
     else{
         aux = ptrF -> inicio;
-        while(aux != NULL){
+        for(i = 0; i < ptrF -> tamanho; i++){
+            printf("%d ", aux -> info);
+            aux = aux -> prox;
+        }
+        printf("\n");
+    }
+}
+
+void ImprimeSemRemocao(Fila *ptrF){
+    int i;
+    No *aux;
+    if(vazia(ptrF))
+        printf("Fila vazia!\n");
+    else{
+        aux = ptrF -> inicio;
+        for(i = 0; i < ptrF -> tamanho; i++){
             printf("%d ", aux -> info);
             aux = aux -> prox;
         }
@@ -103,17 +119,17 @@ void imprime(Fila *ptrF){
 int main(){
     Fila f;
     inic(&f);
-    enfileira(&f, 10);
-    enfileira(&f, 20);
-    enfileira(&f, 30);
-    enfileira(&f, 40);
-    enfileira(&f, 50);
-    imprime(&f);
+    enfileira(&f, 1);
+    enfileira(&f, 2);
+    enfileira(&f, 3);
+    enfileira(&f, 4);
+    enfileira(&f, 5);
+    ImprimeComRemocao(&f);
     desenfileira(&f);
     desenfileira(&f);
-    desenfileira(&f);
-    imprime(&f);
-    printf("Primeiro: %d\n", primeiro(&f));
-    printf("Ultimo: %d\n", ultimo(&f));
+    ImprimeComRemocao(&f);
+    enfileira(&f, 6);
+    enfileira(&f, 7);
+    ImprimeComRemocao(&f);
     return 0;
 }
